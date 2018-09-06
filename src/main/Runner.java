@@ -1,0 +1,21 @@
+package main;
+
+import org.apache.log4j.Logger;
+
+public class Runner {
+
+	private final static Logger LOG = Logger.getLogger(Runner.class);
+	
+	public static void main(String[] args) {
+		//LOG.info("Проверка корректности - работы библиотеки log4j");
+	}
+
+	
+	// ----------------------------------------------
+	// сеттеры, геттеры
+	// ----------------------------------------------
+	public static Logger getLog() {
+		return LOG;
+	}
+	
+}
