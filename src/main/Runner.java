@@ -9,6 +9,8 @@ public class Runner {
 	public static void main(String[] args) {
 		//LOG.info("Проверка корректности - работы библиотеки log4j");
 		System.out.println("Внес изменения");
+		
+		System.out.println("Еще раз измению через раб комп");
 	}
 
 	
