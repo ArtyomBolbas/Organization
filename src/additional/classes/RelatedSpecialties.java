@@ -1,10 +1,10 @@
-package model;
+package additional.classes;
 
 public class RelatedSpecialties { // смежные специальностей
 	// ----------------------------------------------
 	// поля, свойства необходимые RelatedSpecialties
 	// ----------------------------------------------
-	private String nameOfSpecialty;
+	private String nameOfSpecialty;		//название специальности
 
 	private String descriptionSpecialty; // описание специальностей
 

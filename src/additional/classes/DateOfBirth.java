@@ -1,4 +1,4 @@
-package model;
+package additional.classes;
 
 import exception.DateOfBirthException;
 

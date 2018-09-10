@@ -1,6 +1,8 @@
-package model;
+package model.company;
 
 import java.util.Set;
+
+import model.hierarchy.of.employees.Employee;
 
 public class Company {
 	// ----------------------------------------------
