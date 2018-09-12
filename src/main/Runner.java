@@ -1,29 +1,40 @@
 package main;
 
-//import org.apache.log4j.Logger;
+import org.apache.log4j.Logger;
+
+import controller.Controller;
+import view.AdministrativeInput;
 
 public class Runner {
 
-	//private final static Logger LOG = Logger.getLogger(Runner.class);
+	private final static Logger LOG = Logger.getLogger(Runner.class);
+	
+	
 	
 	public static void main(String[] args) {
-		//LOG.info("Проверка корректности - работы библиотеки log4j");
-		System.out.println("Внес изменения");
+		LOG.debug("запущен метод - main(String[] args); (Главный метод приложения), в классе -  Runner");
 		
-//<<<<<<< HEAD
-		System.out.println("Еще раз измению через раб комп");
-//=======
-		System.out.println("еперь изменения вношу через основной комп!!!");
-		// теперь изменения вношу через основной комп!!!
-//>>>>>> branch 'master' of https://github.com/ArtyomBolbas/Organization.git
+		
+		
+		
+		// ---------------------------------
+		// Создаем внешний вид
+		// ---------------------------------
+		AdministrativeInput administrativeInput = new AdministrativeInput();
+		
+		// ---------------------------------
+		// Создаем контроллер 
+		// ---------------------------------
+		Controller controller = new Controller(administrativeInput); 
+		controller.initControllerAdministrativeInput();
 	}
 
 	
 	// ----------------------------------------------
 	// сеттеры, геттеры
 	// ----------------------------------------------
-/*	public static Logger getLog() {
+	public static Logger getLog() {
 		return LOG;
-	}*/
+	}
 	
 }

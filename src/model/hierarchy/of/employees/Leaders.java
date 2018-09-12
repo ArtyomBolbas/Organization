@@ -8,27 +8,27 @@ public abstract class Leaders extends Administration implements Report, Coeffici
 	// ----------------------------------------------
 	// поля, свойства необходимые Leaders
 	// ----------------------------------------------
-	private Master master;			//мастер
+	private Master[] masters;			//мастера
 	
-	private Foreman foreman;		//прораб
+	private Foreman[] foremans;		//прорабы
 
 	// ----------------------------------------------
 	// сеттеры, геттеры
 	// ----------------------------------------------
-	public Master getMaster() {
-		return master;
+	public Master[] getMasters() {
+		return masters;
 	}
 
-	public void setMaster(Master master) {
-		this.master = master;
+	public void setMasters(Master[] masters) {
+		this.masters = masters;
 	}
 
-	public Foreman getForeman() {
-		return foreman;
+	public Foreman[] getForemans() {
+		return foremans;
 	}
 
-	public void setForeman(Foreman foreman) {
-		this.foreman = foreman;
+	public void setForemans(Foreman[] foremans) {
+		this.foremans = foremans;
 	}
 	
 }

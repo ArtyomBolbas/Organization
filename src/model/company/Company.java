@@ -2,17 +2,35 @@ package model.company;
 
 import java.util.Set;
 
+
+import org.apache.log4j.Logger;
+
+import main.Runner;
 import model.hierarchy.of.employees.Employee;
 
 public class Company {
 	// ----------------------------------------------
 	// поля, свойства необходимые Company
 	// ----------------------------------------------
+	
+	private final static Logger LOG = Logger.getLogger(Runner.class);
+	
 	private String nameCompany;
+	
+	//private Set<Employee> blackList;
 
-	private Set<Employee> workingStaff; // работающие сотрудники
+	//private Map<Employee> workingStaff; // работающие сотрудники
 
-	private Set<Employee> firedEmployees; // уволенные сотрудники
+	//private Set<Employee> firedEmployees; // уволенные сотрудники
+	
+	//private static final String  = ""
+	
+	// ----------------------------------------------
+	// конструктор Principal
+	// ----------------------------------------------
+	
+	
+	
 
 	// ----------------------------------------------
 	// сеттеры, геттеры
@@ -25,20 +43,8 @@ public class Company {
 		this.nameCompany = nameCompany;
 	}
 
-	public Set<Employee> getWorkingStaff() {
-		return workingStaff;
-	}
-
-	public void setWorkingStaff(Set<Employee> workingStaff) {
-		this.workingStaff = workingStaff;
-	}
-
-	public Set<Employee> getFiredEmployees() {
-		return firedEmployees;
-	}
-
-	public void setFiredEmployees(Set<Employee> firedEmployees) {
-		this.firedEmployees = firedEmployees;
+	public static Logger getLog() {
+		return LOG;
 	}
 
 }

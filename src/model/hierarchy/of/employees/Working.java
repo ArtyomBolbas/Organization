@@ -9,6 +9,15 @@ public class Working extends Employee {
 	private String profession; // профессия
 
 	private int numberPhone; // номер телефона
+	
+	// ----------------------------------------------
+	// конструктор
+	// ----------------------------------------------
+	public Working(Integer id) {
+		this.id = id;
+	}
+	
+	
 
 	// ----------------------------------------------
 	// сеттеры, геттеры
