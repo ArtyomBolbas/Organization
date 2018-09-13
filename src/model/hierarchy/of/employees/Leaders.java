@@ -1,9 +1,15 @@
 package model.hierarchy.of.employees;
 
+import java.io.Serializable;
+
 import model.company.Coefficient;
 import model.company.Report;
 
-public abstract class Leaders extends Administration implements Report, Coefficient{
+public abstract class Leaders extends Administration implements Report, Coefficient, Serializable{
+	/**
+	 * 
+	 */
+	private static final long serialVersionUID = -1189238247342339274L;
 
 	// ----------------------------------------------
 	// поля, свойства необходимые Leaders

@@ -3,6 +3,7 @@ package main;
 import org.apache.log4j.Logger;
 
 import controller.Controller;
+import view.AddPrincipal;
 import view.AdministrativeInput;
 
 public class Runner {
@@ -22,11 +23,13 @@ public class Runner {
 		// ---------------------------------
 		AdministrativeInput administrativeInput = new AdministrativeInput();
 		
+		AddPrincipal addPrincipal = new AddPrincipal();
+		
 		// ---------------------------------
 		// Создаем контроллер 
 		// ---------------------------------
-		Controller controller = new Controller(administrativeInput); 
-		controller.initControllerAdministrativeInput();
+		Controller controller = new Controller(administrativeInput, addPrincipal); 
+		controller.startController();
 	}
 
 	

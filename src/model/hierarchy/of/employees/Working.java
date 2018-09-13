@@ -1,6 +1,13 @@
 package model.hierarchy.of.employees;
 
-public class Working extends Employee {
+import java.io.Serializable;
+
+public class Working extends Employee implements Serializable{
+	/**
+	 * 
+	 */
+	private static final long serialVersionUID = 1757061524842546861L;
+
 	// ----------------------------------------------
 	// поля, свойства необходимые Working
 	// ----------------------------------------------

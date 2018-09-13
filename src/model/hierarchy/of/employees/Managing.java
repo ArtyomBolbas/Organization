@@ -1,6 +1,12 @@
 package model.hierarchy.of.employees;
 
-public abstract class Managing extends Administration{
+import java.io.Serializable;
+
+public abstract class Managing extends Administration implements Serializable{
+	/**
+	 * 
+	 */
+	private static final long serialVersionUID = 1901623421180321741L;
 
 	// ----------------------------------------------
 	// поля, свойства необходимые Managing

@@ -1,5 +1,7 @@
 package model.hierarchy.of.employees;
 
+import java.io.Serializable;
+
 import org.apache.log4j.Logger;
 
 import main.Runner;
@@ -8,18 +10,19 @@ import model.company.Arrange;
 import model.company.LayOff;
 import model.company.MoveWorkers;
 
-public final class Principal extends Managing implements Arrange, LayOff, AddObject, MoveWorkers{
+public final class Principal extends Managing implements Arrange, LayOff, AddObject, MoveWorkers, Serializable{
+	/**
+	 * 
+	 */
+	private static final long serialVersionUID = -6270888505637143374L;
 	
 	// ----------------------------------------------
 	// поля, свойства необходимые Principal
 	// ----------------------------------------------
-	
 	public static final Principal PRINCIPAL = new Principal();
 	
 	
 	private final static Logger LOG = Logger.getLogger(Runner.class);
-	
-	
 	
 	// ----------------------------------------------
 	// конструктор Principal
@@ -28,6 +31,8 @@ public final class Principal extends Managing implements Arrange, LayOff, AddObj
 		LOG.debug("запущен конструктор в Principal");
 		
 	}
+	
+	
 	
 	
 	// ----------------------------------------------

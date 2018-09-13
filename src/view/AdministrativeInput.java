@@ -76,7 +76,7 @@ public class AdministrativeInput extends JFrame{
 		setDefaultCloseOperation(JFrame.EXIT_ON_CLOSE);
 		setResizable(false);
 		setLocationRelativeTo(null);
-		setVisible(true);
+		setVisible(false);
 		pack();
 	}
 	

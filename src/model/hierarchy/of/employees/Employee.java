@@ -1,6 +1,14 @@
 package model.hierarchy.of.employees;
 
-public abstract class Employee {
+import java.io.Serializable;
+import java.util.Date;
+
+public abstract class Employee implements Serializable{
+	/**
+	 * 
+	 */
+	private static final long serialVersionUID = 7694467475014524085L;
+
 	// ----------------------------------------------
 	// поля, свойства необходимые RelatedSpecialties
 	// ----------------------------------------------
@@ -8,11 +16,11 @@ public abstract class Employee {
 
 	private String surName;
 
-	private String patronymic;
+	private String patronymic; 
 
-	private String dataOfDirth; 
-
-	private String dateOfEmployment; // дата трудоустройства
+	private Date dateOfEmployment; // дата трудоустройства
+	
+	private String position;		//должность
 	
 	// ----------------------------------------------
 	// сеттеры, геттеры
@@ -41,19 +49,19 @@ public abstract class Employee {
 		this.patronymic = patronymic;
 	}
 
-	public String getDataOfDirth() {
-		return dataOfDirth;
+	public String getPosition() {
+		return position;
 	}
 
-	public void setDataOfDirth(String dataOfDirth) {
-		this.dataOfDirth = dataOfDirth;
+	public void setPosition(String position) {
+		this.position = position;
 	}
 
-	public String getDateOfEmployment() {
+	public Date getDateOfEmployment() {
 		return dateOfEmployment;
 	}
 
-	public void setDateOfEmployment(String dateOfEmployment) {
+	public void setDateOfEmployment(Date dateOfEmployment) {
 		this.dateOfEmployment = dateOfEmployment;
 	}
 
