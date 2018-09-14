@@ -10,13 +10,14 @@ import javax.swing.JButton;
 import javax.swing.JFrame;
 import javax.swing.JLabel;
 import javax.swing.JPanel;
+import javax.swing.JPasswordField;
 import javax.swing.JTextField;
 
 import org.apache.log4j.Logger;
 
 import main.Runner;
 
-public class AddPrincipal extends JFrame{
+public class AddEmployeeAdministration extends JFrame{
 
 	/**
 	 * 
@@ -62,15 +63,16 @@ public class AddPrincipal extends JFrame{
 	private JTextField textFieldPosition;
 	private JTextField textFieldDateOfEmployment;
 	private JTextField textFieldLogin;
-	private JTextField textFieldPassword;
-	private JTextField textFieldPasswordVerification;
+	private JPasswordField textFieldPassword;
+	private JPasswordField textFieldPasswordVerification;
+	
 	
 	private JButton buttonNext;
 	
 	// ----------------------------------------------
 	// конструктор AddPrincipal
 	// ----------------------------------------------
-	public AddPrincipal() {
+	public AddEmployeeAdministration() {
 		LOG.debug("запущен конструктор в AddPrincipal");
 		initAddPrincipal();
 	}
@@ -126,16 +128,16 @@ public class AddPrincipal extends JFrame{
 		textFieldSurName.setFont(fontLabel);
 		textFieldPatronymic = new JTextField(30);
 		textFieldPatronymic.setFont(fontLabel);
-		textFieldPosition = new JTextField(STRING_PRINCIPAL);
+		textFieldPosition = new JTextField(30);
 		textFieldPosition.setFont(fontLabel);
-		textFieldPosition.setEditable(false);
+		//textFieldPosition.setEditable(false);
 		textFieldDateOfEmployment = new JTextField(30);
 		textFieldDateOfEmployment.setFont(fontLabel);
 		textFieldLogin = new JTextField(30);
 		textFieldLogin.setFont(fontLabel);
-		textFieldPassword = new JTextField(30);
+		textFieldPassword = new JPasswordField(30);
 		textFieldPassword.setFont(fontLabel);
-		textFieldPasswordVerification = new JTextField(30);
+		textFieldPasswordVerification = new JPasswordField(30);
 		textFieldPasswordVerification.setFont(fontLabel);
 		
 		buttonNext = new JButton(FURTHER);
@@ -263,19 +265,19 @@ public class AddPrincipal extends JFrame{
 		this.textFieldLogin = textFieldLogin;
 	}
 
-	public JTextField getTextFieldPassword() {
+	public JPasswordField getTextFieldPassword() {
 		return textFieldPassword;
 	}
 
-	public void setTextFieldPassword(JTextField textFieldPassword) {
+	public void setTextFieldPassword(JPasswordField textFieldPassword) {
 		this.textFieldPassword = textFieldPassword;
 	}
 
-	public JTextField getTextFieldPasswordVerification() {
+	public JPasswordField getTextFieldPasswordVerification() {
 		return textFieldPasswordVerification;
 	}
 
-	public void setTextFieldPasswordVerification(JTextField textFieldPasswordVerification) {
+	public void setTextFieldPasswordVerification(JPasswordField textFieldPasswordVerification) {
 		this.textFieldPasswordVerification = textFieldPasswordVerification;
 	}
 
@@ -285,6 +287,77 @@ public class AddPrincipal extends JFrame{
 
 	public void setButtonNext(JButton buttonNext) {
 		this.buttonNext = buttonNext;
+	}
+	
+	// ----------------------------------------------
+	// переопределение hashCode и equals
+	// ----------------------------------------------
+	@Override
+	public int hashCode() {
+		final int prime = 31;
+		int result = 1;
+		result = prime * result + ((textFieldDateOfEmployment == null) ? 0 : textFieldDateOfEmployment.hashCode());
+		result = prime * result + ((textFieldFirstName == null) ? 0 : textFieldFirstName.hashCode());
+		result = prime * result + ((textFieldLogin == null) ? 0 : textFieldLogin.hashCode());
+		result = prime * result + ((textFieldPassword == null) ? 0 : textFieldPassword.hashCode());
+		result = prime * result
+				+ ((textFieldPasswordVerification == null) ? 0 : textFieldPasswordVerification.hashCode());
+		result = prime * result + ((textFieldPatronymic == null) ? 0 : textFieldPatronymic.hashCode());
+		result = prime * result + ((textFieldPosition == null) ? 0 : textFieldPosition.hashCode());
+		result = prime * result + ((textFieldSurName == null) ? 0 : textFieldSurName.hashCode());
+		return result;
+	}
+
+	@Override
+	public boolean equals(Object obj) {
+		if (this == obj)
+			return true;
+		if (obj == null)
+			return false;
+		if (getClass() != obj.getClass())
+			return false;
+		AddEmployeeAdministration other = (AddEmployeeAdministration) obj;
+		if (textFieldDateOfEmployment == null) {
+			if (other.textFieldDateOfEmployment != null)
+				return false;
+		} else if (!textFieldDateOfEmployment.equals(other.textFieldDateOfEmployment))
+			return false;
+		if (textFieldFirstName == null) {
+			if (other.textFieldFirstName != null)
+				return false;
+		} else if (!textFieldFirstName.equals(other.textFieldFirstName))
+			return false;
+		if (textFieldLogin == null) {
+			if (other.textFieldLogin != null)
+				return false;
+		} else if (!textFieldLogin.equals(other.textFieldLogin))
+			return false;
+		if (textFieldPassword == null) {
+			if (other.textFieldPassword != null)
+				return false;
+		} else if (!textFieldPassword.equals(other.textFieldPassword))
+			return false;
+		if (textFieldPasswordVerification == null) {
+			if (other.textFieldPasswordVerification != null)
+				return false;
+		} else if (!textFieldPasswordVerification.equals(other.textFieldPasswordVerification))
+			return false;
+		if (textFieldPatronymic == null) {
+			if (other.textFieldPatronymic != null)
+				return false;
+		} else if (!textFieldPatronymic.equals(other.textFieldPatronymic))
+			return false;
+		if (textFieldPosition == null) {
+			if (other.textFieldPosition != null)
+				return false;
+		} else if (!textFieldPosition.equals(other.textFieldPosition))
+			return false;
+		if (textFieldSurName == null) {
+			if (other.textFieldSurName != null)
+				return false;
+		} else if (!textFieldSurName.equals(other.textFieldSurName))
+			return false;
+		return true;
 	}
 	
 }
