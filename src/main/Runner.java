@@ -1,8 +1,13 @@
 package main;
 
+import java.util.ArrayList;
+import java.util.List;
+
 import org.apache.log4j.Logger;
 
-import controller.Controller;
+import controller.ControllerAddNewAdministrationEmployee;
+import controller.ControllerStart;
+import model.hierarchy.of.employees.Employee;
 import view.AddEmployeeAdministration;
 import view.AdministrativeInput;
 
@@ -17,6 +22,13 @@ public class Runner {
 		
 		
 		
+		// ---------------------------------
+		// Списки работников: работающих, черный списов и список объектов
+		// ---------------------------------
+		List <Employee> workingStaff = new ArrayList<Employee>();
+		
+		
+		
 		
 		// ---------------------------------
 		// Создаем внешний вид
@@ -28,8 +40,9 @@ public class Runner {
 		// ---------------------------------
 		// Создаем контроллер 
 		// ---------------------------------
-		Controller controller = new Controller(administrativeInput, addEmployeeAdministration); 
-		controller.startController();
+		ControllerAddNewAdministrationEmployee addNewAdministrationEmployee = new ControllerAddNewAdministrationEmployee();
+		ControllerStart controllerStart = new ControllerStart(administrativeInput, addNewAdministrationEmployee); 
+		controllerStart.startController();
 	}
 
 	

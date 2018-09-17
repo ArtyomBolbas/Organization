@@ -1,12 +1,15 @@
 package model.company;
 
 import java.io.FileInputStream;
+
 import java.io.FileNotFoundException;
+import java.io.FileOutputStream;
 import java.io.IOException;
 import java.io.ObjectInputStream;
+import java.io.ObjectOutputStream;
 import java.util.ArrayList;
 import java.util.LinkedList;
-
+import java.util.List;
 
 import org.apache.log4j.Logger;
 
@@ -30,11 +33,11 @@ public class Company {
 	private int sizefileBlackList;
 	private int sizefileWorkingStaff;
 	
-	private LinkedList<Employee> blackList;
+	private List<Employee> blackList;
 	
-	private ArrayList<Employee> workingStaff;
+	private List<Employee> workingStaff;
 	
-	private ArrayList <BuildingObject> listBuildingBojects;
+	private List <BuildingObject> listBuildingBojects;
 	
 	// ----------------------------------------------
 	// конструктор Principal
@@ -45,18 +48,21 @@ public class Company {
 	}
 	
 	// ----------------------------------------------
-	// метод отвечает за чтение объектов из файла при старте программы
+	// метод отвечает за чтение объектов из файла при старте программы так же за инициализацию файлов
 	// ----------------------------------------------
 	private void start() {
-		LOG.debug("запущен метод - start(); (метод отвечает за чтение объектов из файла при старте программы), в классе - Company");	
-		blackList = new LinkedList<>();
-		workingStaff = new ArrayList<>();
+		LOG.debug("запущен метод - start(); (метод отвечает за чтение объектов из файла при старте программы так же за инициализацию файлов), в классе - Company");	
+		blackList = new LinkedList<Employee>();
+		workingStaff = new ArrayList<Employee>();
 		try (FileInputStream fileInputStreamForBlackList = new FileInputStream(FILE_BLACK_LIST);
 				FileInputStream fileInputStreamForWorkingStaff = new FileInputStream(FILE_WORKING_STAFF_LIST)) {
 			try (ObjectInputStream objectInputStreamForBlackList = new ObjectInputStream(fileInputStreamForBlackList);
 					ObjectInputStream objectInputStreamForWorkingStaff = new ObjectInputStream(fileInputStreamForWorkingStaff)) {
 				sizefileBlackList = fileInputStreamForBlackList.read();
 				sizefileWorkingStaff = fileInputStreamForWorkingStaff.read();
+				// ----------------------------------------------------------------------------------------
+				// при условии, что файл не пуст, переписывает объекты из файла в СПИСОК
+				// ----------------------------------------------------------------------------------------
 				if (sizefileBlackList < 0) {
 					try {
 						blackList = (LinkedList<Employee>)objectInputStreamForBlackList.readObject();
@@ -80,8 +86,26 @@ public class Company {
 		} catch (IOException e1) {
 			LOG.error("IOException - (Файл еще не создан)", e1);
 		}
-		
-		
+		// -------------------------------------------------------------------------------------------
+		// если приложение запущенно в первый раз, то эта часть кода создает файл
+		// так же часть кода отвечает за инициализацию потоков I/O
+		// -------------------------------------------------------------------------------------------
+/*		try(FileOutputStream fileOutputStreamForBlackList = new FileOutputStream(FILE_BLACK_LIST);
+				FileOutputStream fileOutputStreamForWorkingStaff = new FileOutputStream(FILE_WORKING_STAFF_LIST)){
+			try(ObjectOutputStream objectOutputStreamForBlackList = new ObjectOutputStream(fileOutputStreamForBlackList);
+					ObjectOutputStream objectOutputStreamForWorkingStaff = new ObjectOutputStream(fileOutputStreamForWorkingStaff)){
+				
+				
+				
+				
+				
+			}
+		} catch (FileNotFoundException e) {
+			LOG.error("FileNotFoundException - (инициализация: fileInputStream)", e);
+		} catch (IOException e) {
+			LOG.error("IOException - (Файл еще не создан)", e);
+		}
+		*/
 	}
 	
 
@@ -101,32 +125,8 @@ public class Company {
 		Company.nameCompany = nameCompany;
 	}
 
-	public LinkedList<Employee> getBlackList() {
-		return blackList;
-	}
-
-	public void setBlackList(LinkedList<Employee> blackList) {
-		this.blackList = blackList;
-	}
-
-	public ArrayList<Employee> getWorkingStaff() {
-		return workingStaff;
-	}
-
-	public void setWorkingStaff(ArrayList<Employee> workingStaff) {
-		this.workingStaff = workingStaff;
-	}
-
 	public static Company getMycompany() {
 		return myCompany;
-	}
-
-	public ArrayList<BuildingObject> getListBuildingBojects() {
-		return listBuildingBojects;
-	}
-
-	public void setListBuildingBojects(ArrayList<BuildingObject> listBuildingBojects) {
-		this.listBuildingBojects = listBuildingBojects;
 	}
 
 	public int getSizefileBlackList() {
@@ -143,6 +143,30 @@ public class Company {
 
 	public void setSizefileWorkingStaff(int sizefileWorkingStaff) {
 		this.sizefileWorkingStaff = sizefileWorkingStaff;
+	}
+
+	public List<Employee> getBlackList() {
+		return blackList;
+	}
+
+	public void setBlackList(List<Employee> blackList) {
+		this.blackList = blackList;
+	}
+
+	public List<Employee> getWorkingStaff() {
+		return workingStaff;
+	}
+
+	public void setWorkingStaff(List<Employee> workingStaff) {
+		this.workingStaff = workingStaff;
+	}
+
+	public List<BuildingObject> getListBuildingBojects() {
+		return listBuildingBojects;
+	}
+
+	public void setListBuildingBojects(List<BuildingObject> listBuildingBojects) {
+		this.listBuildingBojects = listBuildingBojects;
 	}
 	
 }
