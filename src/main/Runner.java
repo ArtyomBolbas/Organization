@@ -1,6 +1,7 @@
 package main;
 
 import java.util.ArrayList;
+
 import java.util.List;
 
 import org.apache.log4j.Logger;
@@ -40,8 +41,8 @@ public class Runner {
 		// ---------------------------------
 		// Создаем контроллер 
 		// ---------------------------------
-		ControllerAddNewAdministrationEmployee addNewAdministrationEmployee = new ControllerAddNewAdministrationEmployee();
-		ControllerStart controllerStart = new ControllerStart(administrativeInput, addNewAdministrationEmployee); 
+		ControllerAddNewAdministrationEmployee controllerAddNewAdministrationEmployee = new ControllerAddNewAdministrationEmployee(addEmployeeAdministration);
+		ControllerStart controllerStart = new ControllerStart(administrativeInput, controllerAddNewAdministrationEmployee); 
 		controllerStart.startController();
 	}
 

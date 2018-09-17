@@ -13,26 +13,26 @@ public abstract class Administration extends Employee implements Remove, Seriali
 	// ----------------------------------------------
 	// поля, свойства необходимые Administration
 	// ----------------------------------------------
-	private int login;
+	private String login;
 	
-	private int password;
+	private String password;
 
 	// ----------------------------------------------
 	// сеттеры, геттеры
 	// ----------------------------------------------
-	public int getLogin() {
+	public String getLogin() {
 		return login;
 	}
 
-	public void setLogin(int login) {
+	public void setLogin(String login) {
 		this.login = login;
 	}
 
-	public int getPassword() {
+	public String getPassword() {
 		return password;
 	}
 
-	public void setPassword(int password) {
+	public void setPassword(String password) {
 		this.password = password;
 	}
 	

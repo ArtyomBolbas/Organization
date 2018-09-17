@@ -22,13 +22,13 @@ public final class Principal extends Managing implements Arrange, LayOff, AddObj
 	public static final Principal PRINCIPAL = new Principal();
 	
 	
-	private final static Logger LOG = Logger.getLogger(Runner.class);
+	private final static Logger LOG = Logger.getLogger(Principal.class);
 	
 	// ----------------------------------------------
 	// конструктор Principal
 	// ----------------------------------------------
 	private Principal() {
-		LOG.debug("запущен конструктор в Principal");
+		//LOG.debug("запущен конструктор в Principal");
 		
 	}
 	

@@ -39,6 +39,8 @@ public class Company {
 	
 	private List <BuildingObject> listBuildingBojects;
 	
+	private List <Employee> suspendedStaff;	//отстранненые сотрудники
+	
 	// ----------------------------------------------
 	// конструктор Principal
 	// ----------------------------------------------
@@ -167,6 +169,14 @@ public class Company {
 
 	public void setListBuildingBojects(List<BuildingObject> listBuildingBojects) {
 		this.listBuildingBojects = listBuildingBojects;
+	}
+
+	public List<Employee> getSuspendedStaff() {
+		return suspendedStaff;
+	}
+
+	public void setSuspendedStaff(List<Employee> suspendedStaff) {
+		this.suspendedStaff = suspendedStaff;
 	}
 	
 }

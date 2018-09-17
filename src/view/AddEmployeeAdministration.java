@@ -43,7 +43,7 @@ public class AddEmployeeAdministration extends JFrame{
 	private static final String PASSWORD_VERIFICATION = "Повторить пароль";
 	private static final String FURTHER = "Далее";
 	
-	private static final String STRING_PRINCIPAL = "Директор";
+	//private static final String STRING_PRINCIPAL = "Директор";
 	
 	private Font fontLabelMain;
 	private Font fontLabel;

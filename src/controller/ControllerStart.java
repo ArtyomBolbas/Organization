@@ -1,5 +1,7 @@
 package controller;
 
+import java.util.Date;
+
 import javax.swing.JFrame;
 import javax.swing.JOptionPane;
 
@@ -15,11 +17,14 @@ import view.AdministrativeInput;
 
 public class ControllerStart {
 	// ----------------------------------------------
-	// поля, свойства необходимые Controller     
+	// поля, свойства необходимые ControllerStart     
 	// ----------------------------------------------
-	private final static Logger LOG = Logger.getLogger(Runner.class);
+	private final static Logger LOG = Logger.getLogger(ControllerStart.class);
 	
 	private static final String MESSAGE_ATTENTION = "Внимание";
+	private static final String MESSAGE_ABOUT_POSITION = "Директор";
+	
+	private Date date;
 	
 	/**
 	 * Контроллер хранит внешнее представление для изменения (AdministrativeInput)
@@ -29,15 +34,15 @@ public class ControllerStart {
 	/**
 	 * Контроллер хранит внешнее представление для изменения (ControllerAddNewAdministrationEmployee)
 	 */
-	private ControllerAddNewAdministrationEmployee addNewAdministrationEmployee;
+	private ControllerAddNewAdministrationEmployee controllerAddNewAdministrationEmployee;
 	
 	// ----------------------------------------------
 	// конструктор ControllerStart
 	// ----------------------------------------------
-	public ControllerStart(AdministrativeInput administrativeInput, ControllerAddNewAdministrationEmployee addNewAdministrationEmployee) {
+	public ControllerStart(AdministrativeInput administrativeInput, ControllerAddNewAdministrationEmployee controllerAddNewAdministrationEmployee) {
 		LOG.debug("запущен конструктор в ControllerStart");
 		this.administrativeInput = administrativeInput;
-		this.addNewAdministrationEmployee = addNewAdministrationEmployee;
+		this.controllerAddNewAdministrationEmployee = controllerAddNewAdministrationEmployee;
 	}
 	 
 	// ----------------------------------------------
@@ -84,9 +89,11 @@ public class ControllerStart {
 	// ----------------------------------------------
 	private void initControllerAddPrincipal() {
 		LOG.debug("запущен метод - initControllerAddPrincipal(); (Метод отвечающий за нажитие на buttonNext в окне добавления директора ), в классе -  ControllerStart");
-		addNewAdministrationEmployee = new ControllerAddNewAdministrationEmployee();
 		Principal principal = Principal.PRINCIPAL;
-		addNewAdministrationEmployee.start(principal);
+		date = new Date();
+		principal.setPosition(MESSAGE_ABOUT_POSITION);
+		principal.setDateOfEmployment(date);
+		controllerAddNewAdministrationEmployee.start(principal);
 	}
 
 	
