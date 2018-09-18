@@ -1,5 +1,6 @@
 package controller;
 
+import java.io.File;
 import java.util.Date;
 
 import javax.swing.JFrame;
@@ -26,6 +27,8 @@ public class ControllerStart {
 	
 	private Date date;
 	
+	private File fileWorkingStaff;
+	
 	/**
 	 * Контроллер хранит внешнее представление для изменения (AdministrativeInput)
 	 */
@@ -36,13 +39,19 @@ public class ControllerStart {
 	 */
 	private ControllerAddNewAdministrationEmployee controllerAddNewAdministrationEmployee;
 	
+	/**
+	 * Контроллер хранит внешнее представление для изменения (ControllerAddNewAdministrationEmployee)
+	 */
+	private ControllerVerifyLoginAndPassword controllerVerifyLoginAndPassword;
+	
 	// ----------------------------------------------
 	// конструктор ControllerStart
 	// ----------------------------------------------
-	public ControllerStart(AdministrativeInput administrativeInput, ControllerAddNewAdministrationEmployee controllerAddNewAdministrationEmployee) {
+	public ControllerStart(AdministrativeInput administrativeInput, ControllerAddNewAdministrationEmployee controllerAddNewAdministrationEmployee, ControllerVerifyLoginAndPassword controllerVerifyLoginAndPassword) {
 		LOG.debug("запущен конструктор в ControllerStart");
 		this.administrativeInput = administrativeInput;
 		this.controllerAddNewAdministrationEmployee = controllerAddNewAdministrationEmployee;
+		this.controllerVerifyLoginAndPassword = controllerVerifyLoginAndPassword;
 	}
 	 
 	// ----------------------------------------------
@@ -50,39 +59,14 @@ public class ControllerStart {
 	// ----------------------------------------------
 	public void startController() {
 		LOG.debug("запущен метод - startController(); (Метод отвечающий за вариант запуска программы), в классе -  ControllerStart");
-		int size = Company.getMycompany().getSizefileWorkingStaff();
-		if (size < 0) {
-			administrativeInput.setVisible(true);
-			initControllerAdministrativeInput();	
+		fileWorkingStaff = Company.getMycompany().getFileWorkingStaff();
+		if (fileWorkingStaff.length() > 0) {
+			controllerVerifyLoginAndPassword.verify();	
 		} else {
 			initControllerAddPrincipal();
 		}
 	}
 	
-	
-	// ----------------------------------------------
-	// Метод отвечающий за команды кнопок в АДМИНИМСТРАТИВНОМ ОКОШКЕ
-	// ----------------------------------------------
-	private void initControllerAdministrativeInput() {
-		LOG.debug("запущен метод - initControllerAdministrativeInput(); (Метод отвечающий за команды кнопок в АДМИНИМСТРАТИВНОМ ОКОШКЕ), в классе -  ControllerStart");
-		administrativeInput.getButtonLogin().addActionListener(clickEvent -> checkedLogin());
-		administrativeInput.getButtonCancel().addActionListener(clickEvent -> checkCancel());
-	}
-	// ----------------------------------------------
-	// Метод проверяет login введенный пользователем
-	// ----------------------------------------------
-	private void checkedLogin() {
-		LOG.debug("запущен метод - checkedLogin(); (Метод проверяет login введенный пользователем), в классе -  ControllerStart");
-		
-	}
-	
-	// ----------------------------------------------
-	// Метод отменяющий данные введеные пользователем
-	// ----------------------------------------------
-	private void checkCancel() {
-		LOG.debug("запущен метод - checkCancel(); (Метод отменяющий данные введеные пользователем), в классе -  ControllerStart");
-		System.exit(0);
-	}
 	
 	// ----------------------------------------------
 	// Метод отвечающий за нажитие на buttonNext в окне добавления директора 

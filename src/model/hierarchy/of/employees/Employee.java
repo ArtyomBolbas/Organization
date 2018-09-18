@@ -2,6 +2,9 @@ package model.hierarchy.of.employees;
 
 import java.io.Serializable;
 import java.util.Date;
+import java.util.List;
+
+import model.company.Company;
 
 public abstract class Employee implements Serializable{
 	/**
@@ -21,6 +24,18 @@ public abstract class Employee implements Serializable{
 	private Date dateOfEmployment; // дата трудоустройства
 	
 	private String position;		//должность
+	
+	public String fullName(Employee employee) {
+		StringBuffer strB = new StringBuffer();
+				strB.append(employee.getSurName());
+				strB.append(" ");
+				strB.append(employee.getFirstName()); 
+				strB.append(" ");
+				strB.append(employee.getPatronymic());	
+		return strB.toString();
+	}
+	
+	
 	
 	// ----------------------------------------------
 	// сеттеры, геттеры

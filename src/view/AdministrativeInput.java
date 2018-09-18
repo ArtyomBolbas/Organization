@@ -26,7 +26,7 @@ public class AdministrativeInput extends JFrame{
 	// ----------------------------------------------
 	// поля, свойства необходимые AdministrativeInput
 	// ----------------------------------------------
-	private final static Logger LOG = Logger.getLogger(Runner.class);
+	private final static Logger LOG = Logger.getLogger(AdministrativeInput.class);
 	
 	private static final int FRAME_WIDTH = 400;
 	private static final int FRAME_BASIC_HEIGHT = 200;
@@ -157,6 +157,22 @@ public class AdministrativeInput extends JFrame{
 
 	public void setButtonCancel(JButton buttonCancel) {
 		this.buttonCancel = buttonCancel;
+	}
+
+	public JTextField getLoginTextField() {
+		return loginTextField;
+	}
+
+	public void setLoginTextField(JTextField loginTextField) {
+		this.loginTextField = loginTextField;
+	}
+
+	public JPasswordField getPasswordField() {
+		return passwordField;
+	}
+
+	public void setPasswordField(JPasswordField passwordField) {
+		this.passwordField = passwordField;
 	}
 	
 }

@@ -1,12 +1,14 @@
 package model.hierarchy.of.employees;
 
 import java.io.Serializable;
+import java.util.List;
 
 import org.apache.log4j.Logger;
 
 import main.Runner;
 import model.company.AddObject;
 import model.company.Arrange;
+import model.company.Company;
 import model.company.LayOff;
 import model.company.MoveWorkers;
 
@@ -66,6 +68,22 @@ public final class Principal extends Managing implements Arrange, LayOff, AddObj
 	public void arrange() {
 		// TODO Auto-generated method stub
 		
+	}
+	
+	public String fullName(Employee employee) {
+/*		List<Employee> workingStaff = Company.myCompany.getWorkingStaff();
+		StringBuffer strB = new StringBuffer();
+		for (Employee employee1: workingStaff) {
+			if (employee1 instanceof Principal) {*/
+		StringBuffer strB = new StringBuffer();
+				strB.append(employee.getSurName());
+				strB.append(" ");
+				strB.append(employee.getFirstName()); 
+				strB.append(" ");
+				strB.append(employee.getPatronymic());
+		/*	}
+		}*/
+		return strB.toString();
 	}
 	
 	// ----------------------------------------------
