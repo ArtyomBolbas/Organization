@@ -75,21 +75,6 @@ public class ControllerVerifyLoginAndPassword {
 				}
 			}
 		}
-		
-		
-		
-		
-	/*	for (Iterator iterator = Company.myCompany.getWorkingStaff().iterator(); iterator.hasNext();) {
-			Employee employee = (Employee) iterator.next();
-			if (employee instanceof Administration) {
-				if (login.equals(((Administration) employee).getLogin())) {
-					if (password.equals(((Administration) employee).getPassword())) {
-						managingWindow.setVisible(true);
-					}
-				}
-			}
-		}*/
-		
 	}
 
 	// ----------------------------------------------
@@ -97,7 +82,8 @@ public class ControllerVerifyLoginAndPassword {
 	// ----------------------------------------------
 	private void checkCancel() {
 		LOG.debug("запущен метод - checkCancel(); (Метод отменяющий данные введеные пользователем), в классе -  ControllerVerifyLoginAndPassword");
-
+		administrativeInput.getLoginTextField().setText(null);
+		administrativeInput.getPasswordField().setText(null);
 	}
 	
 	

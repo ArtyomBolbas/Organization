@@ -28,7 +28,6 @@ public class ControllerAddNewAdministrationEmployee {
 	private static final String MESSAGE_INVALID_INPUT_DATA_LOGIN_AND_PASSWORD = "Некорректно или не полностью заполненны поля ввода логина или пароля";
 	private static final String MESSAGE_INVALID_INPUT_DATA_PASSWORD = "Пароли не совпадают";
 
-	private Employee employee;
 
 	private String login;
 	private String password;
@@ -41,11 +40,6 @@ public class ControllerAddNewAdministrationEmployee {
 	 * (AddEmployeeAdministration)
 	 */
 	private AddEmployeeAdministration addEmployeeAdministration;
-
-	/**
-	 * Контроллер хранит внешнее представление для изменения (AdministrativeInput)
-	 */
-	private AdministrativeInput administrativeInput;
 	
 	/**
 	 * Контроллер хранит внешнее представление для изменения (AdministrativeInput)
@@ -63,12 +57,16 @@ public class ControllerAddNewAdministrationEmployee {
 	 * }
 	 */
 
-	public ControllerAddNewAdministrationEmployee(AddEmployeeAdministration addEmployeeAdministration,
-			AdministrativeInput administrativeInput, ControllerVerifyLoginAndPassword controllerVerifyLoginAndPassword) {
-		LOG.debug("запущен конструктор в ControllerAddNewAdministrationEmployee");
+	public ControllerAddNewAdministrationEmployee(AddEmployeeAdministration addEmployeeAdministration, 
+			ControllerVerifyLoginAndPassword controllerVerifyLoginAndPassword) {
+		LOG.debug("запущен конструктор в ControllerAddNewAdministrationEmployee; (с парамметрами");
 		this.addEmployeeAdministration = addEmployeeAdministration;
-		this.administrativeInput = administrativeInput;
 		this.controllerVerifyLoginAndPassword = controllerVerifyLoginAndPassword;
+	}
+	
+	public ControllerAddNewAdministrationEmployee() {
+		LOG.debug("запущен конструктор в ControllerAddNewAdministrationEmployee; (без парамметрами");
+
 	}
 
 	/*
@@ -83,6 +81,8 @@ public class ControllerAddNewAdministrationEmployee {
 	public void start(Employee employee) {
 		LOG.debug(
 				"запущен метод - start(); (Метод start() - стратует процес добавлени сотрудника администрвации), в классе -  ControllerAddNewAdministrationEmployee");
+	/*	addEmployeeAdministration.getMainMenuPanel().removeAll();
+		addEmployeeAdministration.revalidate();*/
 		addEmployeeAdministration.setVisible(true);
 		addEmployeeAdministration.getTextFieldPosition().setText(employee.getPosition());
 		addEmployeeAdministration.getTextFieldPosition().setEditable(false);
@@ -127,7 +127,11 @@ public class ControllerAddNewAdministrationEmployee {
 			((Administration) employee).setPassword(addEmployeeAdministration.getTextFieldPassword().getText());
 			saveAdministration(employee);
 			addEmployeeAdministration.setVisible(false);
-			controllerVerifyLoginAndPassword.verify();
+			
+			if (employee instanceof Principal) {
+				controllerVerifyLoginAndPassword.verify();	
+			}
+			
 		}
 
 	}

@@ -45,6 +45,8 @@ public class AddEmployeeAdministration extends JFrame{
 	
 	//private static final String STRING_PRINCIPAL = "Директор";
 	
+	//private JPanel mainMenuPanel;
+	
 	private Font fontLabelMain;
 	private Font fontLabel;
 
@@ -74,15 +76,15 @@ public class AddEmployeeAdministration extends JFrame{
 	// ----------------------------------------------
 	public AddEmployeeAdministration() {
 		LOG.debug("запущен конструктор в AddPrincipal");
-		initAddPrincipal();
+		initAddEmployeeAdministration();
 	}
 
 	// ----------------------------------------------
 	// метод "настроек" внешнего вида
 	// ----------------------------------------------
-	private void initAddPrincipal() {
-		LOG.debug("запущен метод - initAddPrincipal(); (метод \"настроек\" внешнего вида), в классе -  AddPrincipal");
-		add(initPanelAddPrincipal());
+	private void initAddEmployeeAdministration() {
+		LOG.debug("запущен метод - initAddEmployeeAdministration(); (метод \"настроек\" внешнего вида), в классе -  AddEmployeeAdministration");
+		add(initPanelinitAddEmployeeAdministration());
 		
 		setTitle(WINDOW_TITLE);
 		setSize(FRAME_WIDTH, FRAME_HEIGHT);
@@ -96,8 +98,8 @@ public class AddEmployeeAdministration extends JFrame{
 	// ----------------------------------------------
 	// метод в котором добавляются и компануются эл-ты
 	// ----------------------------------------------
-	private JPanel initPanelAddPrincipal() {
-		LOG.debug("запущен метод - initPanelAddPrincipal(); (метод в котором добавляются и компануются эл-ты), в классе -  AddPrincipal");
+	private JPanel initPanelinitAddEmployeeAdministration() {
+		LOG.debug("запущен метод - initPanelinitAddEmployeeAdministration(); (метод в котором добавляются и компануются эл-ты), в классе -  AddEmployeeAdministration");
 
 		JPanel mainMenuPanel = new JPanel();
 		mainMenuPanel.setLayout(new GridBagLayout());

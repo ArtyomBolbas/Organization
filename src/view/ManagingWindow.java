@@ -43,12 +43,12 @@ public class ManagingWindow extends JFrame {
 	private static final String OBJECTS = "Список объектов";
 	private static final String EDIT_PROFILE = "Редактировать профиль";
 
-	private static final String INFORMATION_ABOUT_COMPANY = "Информация о компании";
-	private static final String INFORMATION_ABOUT_EMPLOYEE = "Информация о сотруднике";
-	private static final String COMPANY = "Название компании";
-	private static final String COMPANY_MANAGER = "Управляющий компанией";
-	private static final String NAME_EMPLOYEE = "ФИО";
-	private static final String POSITION_EMPLOYEE = "Должность";
+	private static final String INFORMATION_ABOUT_COMPANY = "Информация о компании:";
+	private static final String INFORMATION_ABOUT_EMPLOYEE = "Информация о сотруднике:";
+	private static final String COMPANY = "Название компании:";
+	private static final String COMPANY_MANAGER = "Управляющий компанией:";
+	private static final String NAME_EMPLOYEE = "Фамилия Имя Отчество:";
+	private static final String POSITION_EMPLOYEE = "Должность:";
 	
 	private Font fontLabelMain;
 	private Font fontLabel;
@@ -120,11 +120,21 @@ public class ManagingWindow extends JFrame {
 
 		JPanel panelLeftTop = new JPanel();
 		panelLeftTop.setLayout(new BorderLayout());
-		panelLeftTop.setPreferredSize(new Dimension(300, 100));
+		panelLeftTop.setPreferredSize(new Dimension(400, 75));
+		
+		JPanel panelLeftTopTop = new JPanel();
+		
+		JPanel panelLeftTopMiddle = new JPanel();
+		panelLeftTopMiddle.setLayout(new GridLayout(2, 2));
 
 		JPanel panelRightTop = new JPanel();
 		panelRightTop.setLayout(new BorderLayout());
-		panelRightTop.setPreferredSize(new Dimension(300, 100));
+		panelRightTop.setPreferredSize(new Dimension(400, 75));
+		
+		JPanel panelRightTopTop = new JPanel();
+		
+		JPanel panelRightTopMiddle = new JPanel();
+		panelRightTopMiddle.setLayout(new GridLayout(2, 2));
 
 		// средняя компоновочная панель
 		JPanel panelMiddle = new JPanel();
@@ -147,19 +157,27 @@ public class ManagingWindow extends JFrame {
 		fontLabel = new Font("Verbana", Font.ITALIC, 16);
 
 		labelNameEmployee = new JLabel(NAME_EMPLOYEE);
+		labelNameEmployee.setFont(fontLabel);
 		labelPositionEmployee = new JLabel(POSITION_EMPLOYEE);
+		labelPositionEmployee.setFont(fontLabel);
 		labelInformationAboutEmployee = new JLabel(INFORMATION_ABOUT_EMPLOYEE);
 		labelInformationAboutEmployee.setFont(fontLabelMain);
 		labelFullNameEmployee = new JLabel();
+		labelFullNameEmployee.setFont(fontLabel);
 		labelPosition = new JLabel();
+		labelPosition.setFont(fontLabel);
 		
 		
 		labelCompany = new JLabel(COMPANY);
+		labelCompany.setFont(fontLabel);
 		labelCompanyManager = new JLabel(COMPANY_MANAGER);
+		labelCompanyManager.setFont(fontLabel);
 		labelInformationAboutCompany = new JLabel(INFORMATION_ABOUT_COMPANY);
 		labelInformationAboutCompany.setFont(fontLabelMain);
 		labelNameCompany = new JLabel();
+		labelNameCompany.setFont(fontLabel);
 		labelNamePrincipal = new JLabel();
+		labelNamePrincipal.setFont(fontLabel);
 
 		buttonTakeToWork = new JButton(TAKE_TO_WORK);
 		buttonToLayOffWork = new JButton(TO_LAY_OF_WORK);
@@ -172,17 +190,19 @@ public class ManagingWindow extends JFrame {
 		buttonObjects = new JButton(OBJECTS);
 		buttonEditProfile = new JButton(EDIT_PROFILE);
 
-		panelLeftTop.add(labelInformationAboutCompany, BorderLayout.NORTH);
-		panelLeftTop.add(labelCompany, BorderLayout.SOUTH);
-		panelLeftTop.add(labelNameCompany, BorderLayout.CENTER);
-		panelLeftTop.add(labelCompanyManager, BorderLayout.SOUTH);
-		panelLeftTop.add(labelNamePrincipal, BorderLayout.SOUTH);
+		panelLeftTopTop.add(labelInformationAboutCompany);
+		
+		panelLeftTopMiddle.add(labelCompany);
+		panelLeftTopMiddle.add(labelNameCompany);
+		panelLeftTopMiddle.add(labelCompanyManager);
+		panelLeftTopMiddle.add(labelNamePrincipal);
 
-		panelRightTop.add(labelInformationAboutEmployee, BorderLayout.NORTH);
-		panelRightTop.add(labelNameEmployee, BorderLayout.SOUTH);
-		panelRightTop.add(labelFullNameEmployee, BorderLayout.CENTER);
-		panelRightTop.add(labelPositionEmployee, BorderLayout.SOUTH);
-		panelRightTop.add(labelPosition, BorderLayout.SOUTH);
+		panelRightTopTop.add(labelInformationAboutEmployee);
+		
+		panelRightTopMiddle.add(labelNameEmployee);
+		panelRightTopMiddle.add(labelFullNameEmployee);
+		panelRightTopMiddle.add(labelPositionEmployee);
+		panelRightTopMiddle.add(labelPosition);
 		
 		panelLeftMiddle.add(buttonTakeToWork);
 		panelLeftMiddle.add(buttonToLayOffWork);
@@ -198,6 +218,12 @@ public class ManagingWindow extends JFrame {
 		/*
 		 * РАЗМЕЩЕНИЕМ ПАНЕЛЕЙ
 		 */
+		panelRightTop.add(panelRightTopTop, BorderLayout.NORTH);
+		panelRightTop.add(panelRightTopMiddle, BorderLayout.CENTER);
+		
+		panelLeftTop.add(panelLeftTopTop, BorderLayout.NORTH);
+		panelLeftTop.add(panelLeftTopMiddle, BorderLayout.CENTER);
+		
 		panelTop.add(panelLeftTop, BorderLayout.WEST);
 		panelTop.add(panelRightTop, BorderLayout.EAST);
 

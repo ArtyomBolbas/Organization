@@ -47,9 +47,10 @@ public class Runner {
 		// ---------------------------------
 		// Создаем контроллер 
 		// ---------------------------------
-		ControllerManagingWindow controllerManagingWindow = new ControllerManagingWindow(managingWindow);
+		ControllerManagingWindow controllerManagingWindow = new ControllerManagingWindow(managingWindow, addEmployeeAdministration);
 		ControllerVerifyLoginAndPassword controllerVerifyLoginAndPassword = new ControllerVerifyLoginAndPassword(administrativeInput, managingWindow, controllerManagingWindow);
-		ControllerAddNewAdministrationEmployee controllerAddNewAdministrationEmployee = new ControllerAddNewAdministrationEmployee(addEmployeeAdministration, administrativeInput, controllerVerifyLoginAndPassword);
+		ControllerAddNewAdministrationEmployee controllerAddNewAdministrationEmployee = new ControllerAddNewAdministrationEmployee(addEmployeeAdministration, controllerVerifyLoginAndPassword);
+		ControllerManagingWindow controllerManagingWindow = new ControllerManagingWindow(managingWindow, addEmployeeAdministration, controllerAddNewAdministrationEmployee);
 		ControllerStart controllerStart = new ControllerStart(administrativeInput, controllerAddNewAdministrationEmployee, controllerVerifyLoginAndPassword); 
 		controllerStart.startController();
 	}
