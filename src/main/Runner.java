@@ -28,9 +28,9 @@ public class Runner {
 		
 		
 		// ---------------------------------
-		// Списки работников: работающих, черный списов и список объектов
+		// 
 		// ---------------------------------
-		List <Employee> workingStaff = new ArrayList<Employee>();
+	
 		
 		
 		
@@ -47,11 +47,25 @@ public class Runner {
 		// ---------------------------------
 		// Создаем контроллер 
 		// ---------------------------------
-		ControllerManagingWindow controllerManagingWindow = new ControllerManagingWindow(managingWindow, addEmployeeAdministration);
+		ControllerManagingWindow controllerManagingWindow = new ControllerManagingWindow();
+		
 		ControllerVerifyLoginAndPassword controllerVerifyLoginAndPassword = new ControllerVerifyLoginAndPassword(administrativeInput, managingWindow, controllerManagingWindow);
-		ControllerAddNewAdministrationEmployee controllerAddNewAdministrationEmployee = new ControllerAddNewAdministrationEmployee(addEmployeeAdministration, controllerVerifyLoginAndPassword);
-		ControllerManagingWindow controllerManagingWindow = new ControllerManagingWindow(managingWindow, addEmployeeAdministration, controllerAddNewAdministrationEmployee);
-		ControllerStart controllerStart = new ControllerStart(administrativeInput, controllerAddNewAdministrationEmployee, controllerVerifyLoginAndPassword); 
+		
+		ControllerAddNewAdministrationEmployee controllerAddNewAdministrationEmployee = new ControllerAddNewAdministrationEmployee();
+		
+		ControllerStart controllerStart = new ControllerStart(); 
+		controllerStart.setAdministrativeInput(administrativeInput);
+		controllerStart.setControllerAddNewAdministrationEmployee(controllerAddNewAdministrationEmployee);
+		controllerStart.setControllerVerifyLoginAndPassword(controllerVerifyLoginAndPassword);
+		
+		
+		controllerAddNewAdministrationEmployee.setAddEmployeeAdministration(addEmployeeAdministration);
+		controllerAddNewAdministrationEmployee.setControllerVerifyLoginAndPassword(controllerVerifyLoginAndPassword);
+		
+		
+		controllerManagingWindow.setManagingWindow(managingWindow);
+		controllerManagingWindow.setControllerAddNewAdministrationEmployee(controllerAddNewAdministrationEmployee);
+		
 		controllerStart.startController();
 	}
 
@@ -59,8 +73,6 @@ public class Runner {
 	// ----------------------------------------------
 	// сеттеры, геттеры
 	// ----------------------------------------------
-	public static Logger getLog() {
-		return LOG;
-	}
+
 	
 }

@@ -1,6 +1,7 @@
 package view;
 
 
+import java.awt.Component;
 import java.awt.Font;
 import java.awt.GridBagConstraints;
 import java.awt.GridBagLayout;
@@ -71,6 +72,8 @@ public class AddEmployeeAdministration extends JFrame{
 	
 	private JButton buttonNext;
 	
+	private JPanel panel;
+	
 	// ----------------------------------------------
 	// конструктор AddPrincipal
 	// ----------------------------------------------
@@ -79,26 +82,43 @@ public class AddEmployeeAdministration extends JFrame{
 		initAddEmployeeAdministration();
 	}
 
+	
+	
+	
+	
 	// ----------------------------------------------
 	// метод "настроек" внешнего вида
 	// ----------------------------------------------
 	private void initAddEmployeeAdministration() {
 		LOG.debug("запущен метод - initAddEmployeeAdministration(); (метод \"настроек\" внешнего вида), в классе -  AddEmployeeAdministration");
-		add(initPanelinitAddEmployeeAdministration());
+		add(panel());
 		
 		setTitle(WINDOW_TITLE);
 		setSize(FRAME_WIDTH, FRAME_HEIGHT);
-		setDefaultCloseOperation(JFrame.EXIT_ON_CLOSE);
+		//setDefaultCloseOperation(JFrame.EXIT_ON_CLOSE);
 		setLocationRelativeTo(null);
 		setResizable(false);
 		setVisible(false);
 		pack();
 	}
+	
+	
+	
+
+	public JPanel panel() {
+		panel = new JPanel();
+		panel.add(initPanelinitAddEmployeeAdministration());
+		return panel;
+	}
+
+
+
+
 
 	// ----------------------------------------------
 	// метод в котором добавляются и компануются эл-ты
 	// ----------------------------------------------
-	private JPanel initPanelinitAddEmployeeAdministration() {
+	public JPanel initPanelinitAddEmployeeAdministration() {
 		LOG.debug("запущен метод - initPanelinitAddEmployeeAdministration(); (метод в котором добавляются и компануются эл-ты), в классе -  AddEmployeeAdministration");
 
 		JPanel mainMenuPanel = new JPanel();
@@ -291,6 +311,7 @@ public class AddEmployeeAdministration extends JFrame{
 		this.buttonNext = buttonNext;
 	}
 	
+
 	// ----------------------------------------------
 	// переопределение hashCode и equals
 	// ----------------------------------------------
@@ -361,5 +382,13 @@ public class AddEmployeeAdministration extends JFrame{
 			return false;
 		return true;
 	}
-	
+
+	public JPanel getPanel() {
+		return panel;
+	}
+
+	public void setPanel(JPanel panel) {
+		this.panel = panel;
+	}
+
 }

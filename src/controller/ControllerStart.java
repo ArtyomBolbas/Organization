@@ -29,6 +29,8 @@ public class ControllerStart {
 	
 	private File fileWorkingStaff;
 	
+	private int startLengthFileWorkingStaff = 4; // при создании и инициализации пустой файл имеет размер 4 byte
+	
 	/**
 	 * Контроллер хранит внешнее представление для изменения (AdministrativeInput)
 	 */
@@ -47,11 +49,9 @@ public class ControllerStart {
 	// ----------------------------------------------
 	// конструктор ControllerStart
 	// ----------------------------------------------
-	public ControllerStart(AdministrativeInput administrativeInput, ControllerAddNewAdministrationEmployee controllerAddNewAdministrationEmployee, ControllerVerifyLoginAndPassword controllerVerifyLoginAndPassword) {
+	public ControllerStart() {
 		LOG.debug("запущен конструктор в ControllerStart");
-		this.administrativeInput = administrativeInput;
-		this.controllerAddNewAdministrationEmployee = controllerAddNewAdministrationEmployee;
-		this.controllerVerifyLoginAndPassword = controllerVerifyLoginAndPassword;
+
 	}
 	 
 	// ----------------------------------------------
@@ -60,7 +60,9 @@ public class ControllerStart {
 	public void startController() {
 		LOG.debug("запущен метод - startController(); (Метод отвечающий за вариант запуска программы), в классе -  ControllerStart");
 		fileWorkingStaff = Company.getMycompany().getFileWorkingStaff();
-		if (fileWorkingStaff.length() > 0) {
+		LOG.info("в методе - startController() > " + fileWorkingStaff.length());
+		
+		if (fileWorkingStaff.length() > startLengthFileWorkingStaff) {
 			controllerVerifyLoginAndPassword.verify();	
 		} else {
 			initControllerAddPrincipal();
@@ -77,15 +79,24 @@ public class ControllerStart {
 		date = new Date();
 		principal.setPosition(MESSAGE_ABOUT_POSITION);
 		principal.setDateOfEmployment(date);
+		administrativeInput.setVisible(false);
 		controllerAddNewAdministrationEmployee.start(principal);
 	}
 
-	
 	// ----------------------------------------------
 	// сеттеры, геттеры
 	// ----------------------------------------------
-	
-	
-	
-	
+	public void setAdministrativeInput(AdministrativeInput administrativeInput) {
+		this.administrativeInput = administrativeInput;
+	}
+
+	public void setControllerAddNewAdministrationEmployee(
+			ControllerAddNewAdministrationEmployee controllerAddNewAdministrationEmployee) {
+		this.controllerAddNewAdministrationEmployee = controllerAddNewAdministrationEmployee;
+	}
+
+	public void setControllerVerifyLoginAndPassword(ControllerVerifyLoginAndPassword controllerVerifyLoginAndPassword) {
+		this.controllerVerifyLoginAndPassword = controllerVerifyLoginAndPassword;
+	}
+
 }

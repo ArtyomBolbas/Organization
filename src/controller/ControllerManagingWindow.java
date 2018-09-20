@@ -47,18 +47,13 @@ public class ControllerManagingWindow {
 	private static final String POSITION_FOREMAN = "Прораб";
 	private static final String POSITION_CHIEF_ENGINEER = "Нач. участка";
 	
-	private Date date;
+	private Date date = new Date();
 	
 
 	/**
 	 * Контроллер хранит внешнее представление для изменения (ManagingWindow)
 	 */
 	private ManagingWindow managingWindow;
-	
-	/**
-	 * Контроллер хранит внешнее представление для изменения (AddEmployeeAdministration)
-	 */
-	private AddEmployeeAdministration addEmployeeAdministration;
 
 	/**
 	 * Контроллер хранит внешнее представление для изменения (ControllerAddNewAdministrationEmployee)
@@ -67,18 +62,18 @@ public class ControllerManagingWindow {
 	// ----------------------------------------------
 	// конструктор ControllerManagingWindow
 	// ----------------------------------------------
-	public ControllerManagingWindow(ManagingWindow managingWindow, AddEmployeeAdministration addEmployeeAdministration, 
-			ControllerAddNewAdministrationEmployee controllerAddNewAdministrationEmployee) {
+	public ControllerManagingWindow() {
 		LOG.debug("запущен конструктор в ControllerManagingWindow");
-		this.managingWindow = managingWindow;
-		this.addEmployeeAdministration = addEmployeeAdministration;
-		this.controllerAddNewAdministrationEmployee = controllerAddNewAdministrationEmployee;
+		//this.managingWindow = managingWindow;
+		//this.addEmployeeAdministration = addEmployeeAdministration;
 	}
 
 	// ----------------------------------------------
 	// Метод добавляет информицию о компании и дbректоре
 	// ----------------------------------------------
 	public void initControllerManagingWindow(Employee employee) {
+		LOG.debug("запущен метод - initControllerManagingWindow(); (Метод добавляет информицию о компании и дbректоре), в классе -  ControllerManagingWindow");
+
 		managingWindow.getLabelNameCompany().setText(Company.myCompany.getNameCompany());
 		List<Employee> workingStaff = Company.myCompany.getWorkingStaff();
 		for (Employee employee1 : workingStaff) {
@@ -90,13 +85,17 @@ public class ControllerManagingWindow {
 		managingWindow.getLabelPosition().setText(employee.getPosition());
 
 		managingWindow.getButtonTakeToWork().addActionListener(click -> takeToWork());
-
+		managingWindow.getButtonListOfEmployees().addActionListener(click -> listOfEmployees());
+		
 	}
+
 
 	// ----------------------------------------------
 	// Метод добавляет сотрудника (трудоустраивает)
 	// ----------------------------------------------
 	private void takeToWork() {
+		LOG.debug("запущен метод - takeToWork(); (Метод добавляет сотрудника (трудоустраивает)), в классе -  ControllerManagingWindow");
+
 		try {
 			String resultEmployee = (String) JOptionPane.showInputDialog(managingWindow,
 					MESSAGE_SELECTING_THE_STAFF_CATEGORY, MESSAGE_ON_THE_RECEPTION_TO_WORK,
@@ -112,18 +111,18 @@ public class ControllerManagingWindow {
 					Employee master = new Master();
 					master.setPosition(POSITION_MASTER);
 					master.setDateOfEmployment(date);
-					addNewAdministrationEmployee.start(master);
+					controllerAddNewAdministrationEmployee.start(master);
 					
 				} else if(resultAdministration.equals(MESSAGE_FOREMAN)) {
 					Employee foreman = new Foreman();
 					foreman.setPosition(POSITION_FOREMAN);
 					foreman.setDateOfEmployment(date);
-					addNewAdministrationEmployee.start(foreman);
+					controllerAddNewAdministrationEmployee.start(foreman);
 				} else if (resultAdministration.equals(MESSAGE_CHIEF_ENGINEER)) {
 					Employee chiefEnginner = new ChiefEnginner();
 					chiefEnginner.setPosition(POSITION_CHIEF_ENGINEER);
 					chiefEnginner.setDateOfEmployment(date);
-					addNewAdministrationEmployee.start(chiefEnginner);
+					controllerAddNewAdministrationEmployee.start(chiefEnginner);
 				}
 			} else if (resultEmployee.equals(EMPLOYEE_WORKING)) {
 
@@ -154,5 +153,27 @@ public class ControllerManagingWindow {
 	 * 
 	 * 
 	 */
+	// ----------------------------------------------
+	// Метод показывает актуальныый список сотрудников
+	// ----------------------------------------------
+	private void listOfEmployees() {
+		LOG.debug("запущен метод - listOfEmployees(); (Метод показывает актуальныый список сотрудников), в классе -  ControllerManagingWindow");
+		
+		
+	}
 
+	// ----------------------------------------------
+	// сеттеры, геттеры
+	// ----------------------------------------------
+	public void setManagingWindow(ManagingWindow managingWindow) {
+		this.managingWindow = managingWindow;
+	}
+
+	public void setControllerAddNewAdministrationEmployee(
+			ControllerAddNewAdministrationEmployee controllerAddNewAdministrationEmployee) {
+		this.controllerAddNewAdministrationEmployee = controllerAddNewAdministrationEmployee;
+	}
+
+	
+	
 }

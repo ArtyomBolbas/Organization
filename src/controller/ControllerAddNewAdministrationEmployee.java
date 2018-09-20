@@ -27,6 +27,7 @@ public class ControllerAddNewAdministrationEmployee {
 	private final static Logger LOG = Logger.getLogger(ControllerAddNewAdministrationEmployee.class);
 	private static final String MESSAGE_INVALID_INPUT_DATA_LOGIN_AND_PASSWORD = "Некорректно или не полностью заполненны поля ввода логина или пароля";
 	private static final String MESSAGE_INVALID_INPUT_DATA_PASSWORD = "Пароли не совпадают";
+	private static final String MESSAGE_INVALID_INPUT_DATA_LOGIN = "Аккаунт под таким логином уже существует";
 
 
 	private String login;
@@ -57,23 +58,19 @@ public class ControllerAddNewAdministrationEmployee {
 	 * }
 	 */
 
-	public ControllerAddNewAdministrationEmployee(AddEmployeeAdministration addEmployeeAdministration, 
+/*	public ControllerAddNewAdministrationEmployee(AddEmployeeAdministration addEmployeeAdministration, 
 			ControllerVerifyLoginAndPassword controllerVerifyLoginAndPassword) {
 		LOG.debug("запущен конструктор в ControllerAddNewAdministrationEmployee; (с парамметрами");
 		this.addEmployeeAdministration = addEmployeeAdministration;
 		this.controllerVerifyLoginAndPassword = controllerVerifyLoginAndPassword;
-	}
+	}*/
 	
 	public ControllerAddNewAdministrationEmployee() {
 		LOG.debug("запущен конструктор в ControllerAddNewAdministrationEmployee; (без парамметрами");
 
 	}
 
-	/*
-	 * public ControllerAddNewAdministrationEmployee(Employee employee) {
-	 * LOG.debug("запущен конструктор в ControllerAddNewAdministrationEmployee");
-	 * this.employee = employee; }
-	 */
+
 
 	// ----------------------------------------------
 	// Метод start() - стратует процес добавлени сотрудника администрвации
@@ -81,8 +78,9 @@ public class ControllerAddNewAdministrationEmployee {
 	public void start(Employee employee) {
 		LOG.debug(
 				"запущен метод - start(); (Метод start() - стратует процес добавлени сотрудника администрвации), в классе -  ControllerAddNewAdministrationEmployee");
-	/*	addEmployeeAdministration.getMainMenuPanel().removeAll();
-		addEmployeeAdministration.revalidate();*/
+		addEmployeeAdministration.getPanel().removeAll();
+		addEmployeeAdministration.getPanel().add(addEmployeeAdministration.initPanelinitAddEmployeeAdministration());
+		addEmployeeAdministration.revalidate();
 		addEmployeeAdministration.setVisible(true);
 		addEmployeeAdministration.getTextFieldPosition().setText(employee.getPosition());
 		addEmployeeAdministration.getTextFieldPosition().setEditable(false);
@@ -102,6 +100,16 @@ public class ControllerAddNewAdministrationEmployee {
 			login = ((AddEmployeeAdministration) args).getTextFieldLogin().getText();
 			password = ((AddEmployeeAdministration) args).getTextFieldPassword().getText();
 			passwordVerification = ((AddEmployeeAdministration) args).getTextFieldPasswordVerification().getText();
+			List<Employee> workingStaff = Company.myCompany.getWorkingStaff();
+			for (Employee employee1: workingStaff) {
+				if (employee instanceof Administration) {
+					if (login.equals(((Administration) employee).getLogin())) {
+						if (password.equals(((Administration) employee).getPassword())) {
+							JOptionPane.showMessageDialog(addEmployeeAdministration, MESSAGE_INVALID_INPUT_DATA_LOGIN);
+						}
+					}
+				}
+			}
 			if (login.equals("") || password.equals("") || passwordVerification.equals("")) {
 				JOptionPane.showMessageDialog(addEmployeeAdministration, MESSAGE_INVALID_INPUT_DATA_LOGIN_AND_PASSWORD);
 			} else if (!password.equals(passwordVerification)) {
@@ -125,7 +133,8 @@ public class ControllerAddNewAdministrationEmployee {
 			employee.setPatronymic(addEmployeeAdministration.getTextFieldPatronymic().getText());
 			((Administration) employee).setLogin(addEmployeeAdministration.getTextFieldLogin().getText());
 			((Administration) employee).setPassword(addEmployeeAdministration.getTextFieldPassword().getText());
-			saveAdministration(employee);
+			//saveAdministration(employee);
+			Company.myCompany.addEmployeeWorkingStaff(employee);
 			addEmployeeAdministration.setVisible(false);
 			
 			if (employee instanceof Principal) {
@@ -157,8 +166,25 @@ public class ControllerAddNewAdministrationEmployee {
 		} catch (IOException e) {
 			LOG.error("IOException - (Файл еще не создан)", e);
 		}
-
 		
+/*		if (employee instanceof Principal) {
+			//Company.myCompany.getWorkingStaff().add(employee);
+			List<Employee> workingStaff = Company.myCompany.getWorkingStaff();
+			workingStaff.add(employee);	
+			objectOutputStreamForWorkingStaff.writeObject(workingStaff);
+			objectOutputStreamForWorkingStaff.close();
+		}*/
+	
 	}
 
+	// ----------------------------------------------
+	// сеттеры, геттеры
+	// ----------------------------------------------
+	public void setAddEmployeeAdministration(AddEmployeeAdministration addEmployeeAdministration) {
+		this.addEmployeeAdministration = addEmployeeAdministration;
+	}
+	
+	public void setControllerVerifyLoginAndPassword(ControllerVerifyLoginAndPassword controllerVerifyLoginAndPassword) {
+		this.controllerVerifyLoginAndPassword = controllerVerifyLoginAndPassword;
+	}
 }

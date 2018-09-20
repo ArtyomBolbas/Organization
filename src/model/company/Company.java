@@ -41,6 +41,8 @@ public class Company {
 	private List<BuildingObject> listBuildingBojects;
 
 	private List<Employee> suspendedStaff; // отстранненые сотрудники
+	
+	private boolean readingWriting;
 
 	// ----------------------------------------------
 	// конструктор Principal
@@ -55,14 +57,12 @@ public class Company {
 	// инициализацию файлов
 	// ----------------------------------------------
 	private void start() {
-		// LOG.debug("запущен метод - start(); (метод отвечает за чтение объектов из
-		// файла при старте программы так же за инициализацию файлов), в классе -
-		// Company");
+		LOG.debug("запущен метод - start(); (метод отвечает за чтение объектов из файла при старте программы так же за инициализацию файлов), в классе - Company");
 		blackList = new LinkedList<Employee>();
 		workingStaff = new ArrayList<Employee>();
 		fileWorkingStaff = new File(FILE_WORKING_STAFF_LIST);
 		fileBlackList = new File(FILE_BLACK_LIST);
-		LOG.info(fileWorkingStaff.length());
+		LOG.info("в методе start() > " + fileWorkingStaff.length());
 		try (FileInputStream fileInputStreamForBlackList = new FileInputStream(FILE_BLACK_LIST);
 				FileInputStream fileInputStreamForWorkingStaff = new FileInputStream(FILE_WORKING_STAFF_LIST)) {
 			try (ObjectInputStream objectInputStreamForBlackList = new ObjectInputStream(fileInputStreamForBlackList);
@@ -98,21 +98,25 @@ public class Company {
 		// если приложение запущенно в первый раз, то эта часть кода создает файл
 		// так же часть кода отвечает за инициализацию потоков I/O
 		// -------------------------------------------------------------------------------------------
-		if (fileWorkingStaff.length() == 0) {
-			try (FileOutputStream fileOutputStreamForBlackList = new FileOutputStream(FILE_BLACK_LIST);
-					FileOutputStream fileOutputStreamForWorkingStaff = new FileOutputStream(FILE_WORKING_STAFF_LIST)) {
-				try (ObjectOutputStream objectOutputStreamForBlackList = new ObjectOutputStream(
-						fileOutputStreamForBlackList);
-						ObjectOutputStream objectOutputStreamForWorkingStaff = new ObjectOutputStream(
-								fileOutputStreamForWorkingStaff)) {
+	}
 
-				}
-			} catch (FileNotFoundException e) {
-				LOG.error("FileNotFoundException - (инициализация: fileInputStream)", e);
-			} catch (IOException e) {
-				LOG.error("IOException - (Файл еще не создан)", e);
+	public void addEmployeeWorkingStaff(Employee employee) {
+		// if (fileWorkingStaff.length() == 0) {
+		try (FileOutputStream fileOutputStreamForBlackList = new FileOutputStream(FILE_BLACK_LIST);
+				FileOutputStream fileOutputStreamForWorkingStaff = new FileOutputStream(FILE_WORKING_STAFF_LIST)) {
+			try (ObjectOutputStream objectOutputStreamForBlackList = new ObjectOutputStream(
+					fileOutputStreamForBlackList);
+					ObjectOutputStream objectOutputStreamForWorkingStaff = new ObjectOutputStream(
+							fileOutputStreamForWorkingStaff)) {
+				workingStaff.add(employee);
+				objectOutputStreamForWorkingStaff.writeObject(workingStaff);
 			}
+		} catch (FileNotFoundException e) {
+			LOG.error("FileNotFoundException - (инициализация: fileInputStream)", e);
+		} catch (IOException e) {
+			LOG.error("IOException - (Файл еще не создан)", e);
 		}
+		// }
 	}
 
 	// ----------------------------------------------
@@ -182,5 +186,5 @@ public class Company {
 	public void setFileBlackList(File fileBlackList) {
 		this.fileBlackList = fileBlackList;
 	}
-	
+
 }
