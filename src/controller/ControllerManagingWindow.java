@@ -138,24 +138,6 @@ public class ControllerManagingWindow {
 			LOG.error("NullPointerException (ошибка падает, в случае если не выбрали сотрудника и нажили: ОТМЕНА" + e);
 		}
 	}
-	/*
-	 * int result = JOptionPane.showConfirmDialog( JOptionPaneTest.this,
-	 * "Вам это нужно?", TITLE_confirm, JOptionPane.YES_NO_CANCEL_OPTION); // Окна
-	 * подтверждения c 2-мя параметрами if (result == JOptionPane.YES_OPTION)
-	 * JOptionPane.showConfirmDialog(JOptionPaneTest.this, "Вы не отказываетесь?");
-	 * else if (result == JOptionPane.NO_OPTION)
-	 * JOptionPane.showConfirmDialog(JOptionPaneTest.this, "Вы отказались?"); } });
-	 * 
-	 * JOptionPane.showInputDialog( JOptionPaneTest.this,
-	 * "Выберите любимый напиток :", "Выбор напитка", JOptionPane.QUESTION_MESSAGE,
-	 * icon, drink, drink[0]); // Диалоговое окно вывода сообщения
-	 * JOptionPane.showMessageDialog(JOptionPaneTest.this, result);
-	 * 
-	 * 
-	 * 
-	 * 
-	 * 
-	 */
 	// ----------------------------------------------
 	// Метод показывает актуальныый список сотрудников
 	// ----------------------------------------------
@@ -164,10 +146,10 @@ public class ControllerManagingWindow {
 		workingSraff = Company.myCompany.getWorkingStaff();
 		ListsEmployee panelListEmployee = new ListsEmployee();
 	//	managingWindow.getPanelRightMiddle().removeAll();
-	//	managingWindow.getPanelRightMiddle().add(panelListEmployee.initPanelListEmployee());
+		managingWindow.getPanelRightMiddle().add(panelListEmployee.initPanelListEmployee());
 		//managingWindow.getPanelRightMiddle().revalidate();
 		
-		panelListEmployee.setVisible(true);
+		//panelListEmployee.setVisible(true);
 		//managingWindow.get
 		
 	}
