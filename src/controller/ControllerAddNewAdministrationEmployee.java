@@ -1,9 +1,11 @@
 package controller;
 
+import java.io.File;
 import java.io.FileNotFoundException;
 import java.io.FileOutputStream;
 import java.io.IOException;
 import java.io.ObjectOutputStream;
+import java.util.ArrayList;
 import java.util.List;
 
 import javax.swing.JFrame;
@@ -29,7 +31,6 @@ public class ControllerAddNewAdministrationEmployee {
 	private static final String MESSAGE_INVALID_INPUT_DATA_PASSWORD = "Пароли не совпадают";
 	private static final String MESSAGE_INVALID_INPUT_DATA_LOGIN = "Аккаунт под таким логином уже существует";
 
-
 	private String login;
 	private String password;
 	private String passwordVerification;
@@ -41,7 +42,7 @@ public class ControllerAddNewAdministrationEmployee {
 	 * (AddEmployeeAdministration)
 	 */
 	private AddEmployeeAdministration addEmployeeAdministration;
-	
+
 	/**
 	 * Контроллер хранит внешнее представление для изменения (AdministrativeInput)
 	 */
@@ -58,19 +59,19 @@ public class ControllerAddNewAdministrationEmployee {
 	 * }
 	 */
 
-/*	public ControllerAddNewAdministrationEmployee(AddEmployeeAdministration addEmployeeAdministration, 
-			ControllerVerifyLoginAndPassword controllerVerifyLoginAndPassword) {
-		LOG.debug("запущен конструктор в ControllerAddNewAdministrationEmployee; (с парамметрами");
-		this.addEmployeeAdministration = addEmployeeAdministration;
-		this.controllerVerifyLoginAndPassword = controllerVerifyLoginAndPassword;
-	}*/
-	
+	/*
+	 * public ControllerAddNewAdministrationEmployee(AddEmployeeAdministration
+	 * addEmployeeAdministration, ControllerVerifyLoginAndPassword
+	 * controllerVerifyLoginAndPassword) { LOG.
+	 * debug("запущен конструктор в ControllerAddNewAdministrationEmployee; (с парамметрами"
+	 * ); this.addEmployeeAdministration = addEmployeeAdministration;
+	 * this.controllerVerifyLoginAndPassword = controllerVerifyLoginAndPassword; }
+	 */
+
 	public ControllerAddNewAdministrationEmployee() {
 		LOG.debug("запущен конструктор в ControllerAddNewAdministrationEmployee; (без парамметрами");
 
 	}
-
-
 
 	// ----------------------------------------------
 	// Метод start() - стратует процес добавлени сотрудника администрвации
@@ -101,12 +102,15 @@ public class ControllerAddNewAdministrationEmployee {
 			password = ((AddEmployeeAdministration) args).getTextFieldPassword().getText();
 			passwordVerification = ((AddEmployeeAdministration) args).getTextFieldPasswordVerification().getText();
 			List<Employee> workingStaff = Company.myCompany.getWorkingStaff();
-			LOG.info("в метода checkedPassword() > " + workingStaff.size());
-			for (Employee employee1: workingStaff) {
+			// LOG.error("в метода checkedPassword() > " + workingStaff.size());
+			if (!(workingStaff == null)) {
 				if (employee instanceof Administration) {
-					if (login.equals(((Administration) employee).getLogin())) {
-						if (password.equals(((Administration) employee).getPassword())) {
-							JOptionPane.showMessageDialog(addEmployeeAdministration, MESSAGE_INVALID_INPUT_DATA_LOGIN);
+					for (Employee employee1 : workingStaff) {
+						if (login.equals(((Administration) employee).getLogin())) {
+							if (password.equals(((Administration) employee).getPassword())) {
+								JOptionPane.showMessageDialog(addEmployeeAdministration,
+										MESSAGE_INVALID_INPUT_DATA_LOGIN);
+							}
 						}
 					}
 				}
@@ -134,14 +138,14 @@ public class ControllerAddNewAdministrationEmployee {
 			employee.setPatronymic(addEmployeeAdministration.getTextFieldPatronymic().getText());
 			((Administration) employee).setLogin(addEmployeeAdministration.getTextFieldLogin().getText());
 			((Administration) employee).setPassword(addEmployeeAdministration.getTextFieldPassword().getText());
-			//saveAdministration(employee);
-			Company.myCompany.addEmployeeWorkingStaff(employee);
+			saveAdministration(employee);
+			// Company.myCompany.addEmployeeWorkingStaff(employee);
 			addEmployeeAdministration.setVisible(false);
-			
+
 			if (employee instanceof Principal) {
-				controllerVerifyLoginAndPassword.verify();	
+				controllerVerifyLoginAndPassword.verify();
 			}
-			
+
 		}
 
 	}
@@ -152,11 +156,15 @@ public class ControllerAddNewAdministrationEmployee {
 	private void saveAdministration(Employee employee) {
 		LOG.debug(
 				"запущен метод - saveAdministration(); (Метод отвечающий за запись нового сотрудника администрации в файл), в классе -  ControllerAddNewAdministrationEmployee");
-		try(FileOutputStream fileOutputStreamForWorkingStaff = new FileOutputStream(FILE_WORKING_STAFF_LIST)){
-			try(ObjectOutputStream objectOutputStreamForWorkingStaff = new ObjectOutputStream(fileOutputStreamForWorkingStaff)){
+		try (FileOutputStream fileOutputStreamForWorkingStaff = new FileOutputStream(FILE_WORKING_STAFF_LIST)) {
+			try (ObjectOutputStream objectOutputStreamForWorkingStaff = new ObjectOutputStream(
+					fileOutputStreamForWorkingStaff)) {
 				if (employee instanceof Principal) {
-					//Company.myCompany.getWorkingStaff().add(employee);
+					// Company.myCompany.getWorkingStaff().add(employee);
 					List<Employee> workingStaff = Company.myCompany.getWorkingStaff();
+					if (workingStaff == null) {
+						workingStaff = new ArrayList<Employee>();
+					}
 					workingStaff.add(employee);
 					objectOutputStreamForWorkingStaff.writeObject(workingStaff);
 					objectOutputStreamForWorkingStaff.close();
@@ -166,16 +174,19 @@ public class ControllerAddNewAdministrationEmployee {
 			LOG.error("FileNotFoundException - (инициализация: fileInputStream)", e);
 		} catch (IOException e) {
 			LOG.error("IOException - (Файл еще не создан)", e);
+		}finally {
+			
 		}
-		
-/*		if (employee instanceof Principal) {
-			//Company.myCompany.getWorkingStaff().add(employee);
-			List<Employee> workingStaff = Company.myCompany.getWorkingStaff();
-			workingStaff.add(employee);	
-			objectOutputStreamForWorkingStaff.writeObject(workingStaff);
-			objectOutputStreamForWorkingStaff.close();
-		}*/
-	
+
+		/*
+		 * if (employee instanceof Principal) {
+		 * //Company.myCompany.getWorkingStaff().add(employee); List<Employee>
+		 * workingStaff = Company.myCompany.getWorkingStaff();
+		 * workingStaff.add(employee);
+		 * objectOutputStreamForWorkingStaff.writeObject(workingStaff);
+		 * objectOutputStreamForWorkingStaff.close(); }
+		 */
+
 	}
 
 	// ----------------------------------------------
@@ -184,7 +195,7 @@ public class ControllerAddNewAdministrationEmployee {
 	public void setAddEmployeeAdministration(AddEmployeeAdministration addEmployeeAdministration) {
 		this.addEmployeeAdministration = addEmployeeAdministration;
 	}
-	
+
 	public void setControllerVerifyLoginAndPassword(ControllerVerifyLoginAndPassword controllerVerifyLoginAndPassword) {
 		this.controllerVerifyLoginAndPassword = controllerVerifyLoginAndPassword;
 	}

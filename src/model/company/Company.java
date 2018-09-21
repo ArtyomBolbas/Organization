@@ -100,9 +100,8 @@ public class Company {
 		// если приложение запущенно в первый раз, то эта часть кода создает файл
 		// так же часть кода отвечает за инициализацию потоков I/O
 		// -------------------------------------------------------------------------------------------
-	}
+		
 
-	public void addEmployeeWorkingStaff(Employee employee) {
 		
 		try (FileOutputStream fileOutputStreamForBlackList = new FileOutputStream(FILE_BLACK_LIST);
 				FileOutputStream fileOutputStreamForWorkingStaff = new FileOutputStream(FILE_WORKING_STAFF_LIST)) {
@@ -110,8 +109,7 @@ public class Company {
 					fileOutputStreamForBlackList);
 					ObjectOutputStream objectOutputStreamForWorkingStaff = new ObjectOutputStream(
 							fileOutputStreamForWorkingStaff)) {
-				workingStaff.add(employee);
-				objectOutputStreamForWorkingStaff.writeObject(workingStaff);
+				
 			}
 		} catch (FileNotFoundException e) {
 			LOG.error("FileNotFoundException - (инициализация: fileInputStream)", e);
@@ -124,6 +122,12 @@ public class Company {
 	// сеттеры, геттеры
 	// ----------------------------------------------
 
+	/*
+	workingStaff.add(employee);
+	objectOutputStreamForWorkingStaff.writeObject(workingStaff);
+	
+	*/
+	
 	public static Logger getLog() {
 		return LOG;
 	}
