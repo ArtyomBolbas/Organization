@@ -41,7 +41,7 @@ public class Company {
 	private List<BuildingObject> listBuildingBojects;
 
 	private List<Employee> suspendedStaff; // отстранненые сотрудники
-	
+
 	private boolean readingWriting;
 
 	// ----------------------------------------------
@@ -57,9 +57,9 @@ public class Company {
 	// инициализацию файлов
 	// ----------------------------------------------
 	private void start() {
-		LOG.debug("запущен метод - start(); (метод отвечает за чтение объектов из файла при старте программы так же за инициализацию файлов), в классе - Company");
+		LOG.debug(
+				"запущен метод - start(); (метод отвечает за чтение объектов из файла при старте программы так же за инициализацию файлов), в классе - Company");
 		blackList = new LinkedList<Employee>();
-		workingStaff = new ArrayList<Employee>();
 		fileWorkingStaff = new File(FILE_WORKING_STAFF_LIST);
 		fileBlackList = new File(FILE_BLACK_LIST);
 		LOG.info("в методе start() > " + fileWorkingStaff.length());
@@ -73,7 +73,9 @@ public class Company {
 				// ----------------------------------------------------------------------------------------
 				if (fileWorkingStaff.length() > 0) {
 					try {
+						workingStaff = new ArrayList<Employee>();
 						workingStaff = (ArrayList<Employee>) objectInputStreamForWorkingStaff.readObject();
+						LOG.info("в метода start(ObjectInputStream) > " + workingStaff.size());
 					} catch (ClassNotFoundException e) {
 						LOG.error("IOException - (Файл еще не создан)", e);
 					}
@@ -101,7 +103,7 @@ public class Company {
 	}
 
 	public void addEmployeeWorkingStaff(Employee employee) {
-		// if (fileWorkingStaff.length() == 0) {
+		
 		try (FileOutputStream fileOutputStreamForBlackList = new FileOutputStream(FILE_BLACK_LIST);
 				FileOutputStream fileOutputStreamForWorkingStaff = new FileOutputStream(FILE_WORKING_STAFF_LIST)) {
 			try (ObjectOutputStream objectOutputStreamForBlackList = new ObjectOutputStream(
@@ -116,7 +118,6 @@ public class Company {
 		} catch (IOException e) {
 			LOG.error("IOException - (Файл еще не создан)", e);
 		}
-		// }
 	}
 
 	// ----------------------------------------------

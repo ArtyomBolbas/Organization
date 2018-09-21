@@ -101,6 +101,7 @@ public class ControllerAddNewAdministrationEmployee {
 			password = ((AddEmployeeAdministration) args).getTextFieldPassword().getText();
 			passwordVerification = ((AddEmployeeAdministration) args).getTextFieldPasswordVerification().getText();
 			List<Employee> workingStaff = Company.myCompany.getWorkingStaff();
+			LOG.info("в метода checkedPassword() > " + workingStaff.size());
 			for (Employee employee1: workingStaff) {
 				if (employee instanceof Administration) {
 					if (login.equals(((Administration) employee).getLogin())) {

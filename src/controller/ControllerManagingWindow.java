@@ -17,6 +17,7 @@ import model.hierarchy.of.employees.Master;
 import model.hierarchy.of.employees.Principal;
 import view.AddEmployeeAdministration;
 import view.AdministrativeInput;
+import view.ListsEmployee;
 import view.ManagingWindow;
 
 public class ControllerManagingWindow {
@@ -54,6 +55,8 @@ public class ControllerManagingWindow {
 	 * Контроллер хранит внешнее представление для изменения (ManagingWindow)
 	 */
 	private ManagingWindow managingWindow;
+	
+	private List<Employee> workingSraff;
 
 	/**
 	 * Контроллер хранит внешнее представление для изменения (ControllerAddNewAdministrationEmployee)
@@ -158,7 +161,14 @@ public class ControllerManagingWindow {
 	// ----------------------------------------------
 	private void listOfEmployees() {
 		LOG.debug("запущен метод - listOfEmployees(); (Метод показывает актуальныый список сотрудников), в классе -  ControllerManagingWindow");
+		workingSraff = Company.myCompany.getWorkingStaff();
+		ListsEmployee panelListEmployee = new ListsEmployee();
+	//	managingWindow.getPanelRightMiddle().removeAll();
+	//	managingWindow.getPanelRightMiddle().add(panelListEmployee.initPanelListEmployee());
+		//managingWindow.getPanelRightMiddle().revalidate();
 		
+		panelListEmployee.setVisible(true);
+		//managingWindow.get
 		
 	}
 

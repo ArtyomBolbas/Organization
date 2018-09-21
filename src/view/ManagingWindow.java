@@ -76,6 +76,8 @@ public class ManagingWindow extends JFrame {
 	private JButton buttonBlackList;
 	private JButton buttonObjects;
 	private JButton buttonEditProfile;
+	
+	private JPanel panelRightMiddle;
 
 	// ----------------------------------------------
 	// конструктор ManagingWindow
@@ -145,7 +147,7 @@ public class ManagingWindow extends JFrame {
 		panelLeftMiddle.setLayout(new GridLayout(10, 1));
 
 		// правая средняя панель
-		JPanel panelRightMiddle = new JPanel();
+		panelRightMiddle = new JPanel();
 
 		// нижняя панель
 		JPanel panelBottom = new JPanel();
@@ -366,6 +368,14 @@ public class ManagingWindow extends JFrame {
 
 	public void setLabelInformationAboutCompany(JLabel labelInformationAboutCompany) {
 		this.labelInformationAboutCompany = labelInformationAboutCompany;
+	}
+
+	public JPanel getPanelRightMiddle() {
+		return panelRightMiddle;
+	}
+
+	public void setPanelRightMiddle(JPanel panelRightMiddle) {
+		this.panelRightMiddle = panelRightMiddle;
 	}
 	
 }

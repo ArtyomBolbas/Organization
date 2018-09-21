@@ -102,18 +102,15 @@ public class AddEmployeeAdministration extends JFrame{
 		pack();
 	}
 	
-	
-	
-
+	// ----------------------------------------------
+	// метод который, в случае необзодимсти служит для очищения и обновления информации
+	// ----------------------------------------------
 	public JPanel panel() {
+		LOG.debug("запущен метод - panel(); (метод который, в случае необзодимсти служит для очищения и обновления информации), в классе -  AddEmployeeAdministration");
 		panel = new JPanel();
 		panel.add(initPanelinitAddEmployeeAdministration());
 		return panel;
 	}
-
-
-
-
 
 	// ----------------------------------------------
 	// метод в котором добавляются и компануются эл-ты
